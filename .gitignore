@@ -1,0 +1,9 @@
+# Ignore Visual Studio settings
+.vs/
+# Ignore Python files
+__pycache__/
+*.pyc
+
+# Ignore environment files
+.env
+venv/
