@@ -2,6 +2,7 @@
 from django.shortcuts import render, HttpResponse,redirect
 # app/views.py
 from .forms import PatientForm
+from .models import Patient
 
 # Create your views here.
 
@@ -26,16 +27,31 @@ def accounts(request):
     return render(request, 'accounts/base.html')
 
 
+# def register_patient(request):
+#     if request.method == 'POST':
+#         form = PatientForm(request.POST, request.FILES)  # include request.FILES
+#         if form.is_valid():
+#             form.save()
+#             return redirect('patient_success')  # or to the list page
+#     else:
+#         form = PatientForm()
+#     return render(request, 'nurses/register_patient.html', {'form': form})
+
 def register_patient(request):
+    patients = Patient.objects.all().order_by('-date_registered')
+    
     if request.method == 'POST':
-        form = PatientForm(request.POST, request.FILES)  # include request.FILES
+        form = PatientForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('patient_success')  # or to the list page
+            return redirect('register_patient')  # reload with new data
     else:
         form = PatientForm()
-    return render(request, 'nurses/register_patient.html', {'form': form})
-
+        
+    return render(request, 'nurses/register_patient.html', {
+        'form': form,
+        'patients': patients
+    })
                      
 def hr(request):
     return render(request, 'hr/base.html')
