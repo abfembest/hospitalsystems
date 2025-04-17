@@ -49,6 +49,7 @@
                                 <th>DOB</th>
                                 <th>Phone</th>
                                 <th>Blood Group</th>
+                                <th>Photo</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,6 +61,7 @@
                                 <td>{{ patient.date_of_birth }}</td>
                                 <td>{{ patient.phone }}</td>
                                 <td>{{ patient.blood_group }}</td>
+                                <td>{{ patient.photo }}</td>
                             </tr>
                             {% empty %}
                             <tr>
@@ -310,7 +312,7 @@
                         </div>
                     </div>
                     <div class="card-body p-0">
-                        <div class="table-responsive" style="height: 500px; overflow-y: auto;">
+                        <div class="table-responsive"  overflow-y: auto;">
                             <table class="table table-head-fixed table-striped table-hover table-sm">
                                 <thead>
                                     <tr>
@@ -320,6 +322,7 @@
                                         <th>Blood</th>
                                         <th>Phone</th>
                                         <th>Email</th>
+                                        <th>Photo </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -331,10 +334,11 @@
                                         <td>{{ patient.blood_group }}</td>
                                         <td>{{ patient.phone }}</td>
                                         <td>{{ patient.email }}</td>
+                                        <td><img src="{{ patient.photo.url }}" width="70" height="70" /></td>
                                     </tr>
                                     {% empty %}
                                     <tr>
-                                        <td colspan="6" class="text-center">No patients registered yet.</td>
+                                        <td colspan="7" class="text-center">No patients registered yet.</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
