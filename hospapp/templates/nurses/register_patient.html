@@ -279,21 +279,21 @@
                             <!-- Row 6: Photo -->
                             <div class="form-group mb-2">
 
-
                                  <div class="form-group">
                                     <label for="exampleInputFile">File input</label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="exampleInputFile">
                                             <label class="custom-file-label" for="exampleInputFile">
-                                                Choose file </label>
-                                                {{ form.photo|add_class:"d-none" }}
-                                                {% for error in form.photo.errors %}
-                                                <div class="text-danger small">{{ error }}</div>
-                                                {% endfor %}
+                                                Choose file
+                                            </label>
+                                            {{ form.photo|add_class:"form-control form-control-sm" }}
+                                            {% for error in form.photo.errors %}
+                                            <div class="text-danger small">{{ error }}</div>
+                                            {% endfor %}
                                         </div>
                                         <div class="input-group-append">
-                                            <span class="input-group-text">Upload</span>
+                                            <span class="input-group-text ">Upload</span>
                                         </div>
                                     </div>
                                 </div>
