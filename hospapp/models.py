@@ -31,16 +31,30 @@ class Patient(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
+class Ward(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+class Bed(models.Model):
+    ward = models.ForeignKey(Ward, on_delete=models.CASCADE, related_name='beds')
+    bed_number = models.CharField(max_length=20)
+    is_occupied = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.ward.name} - {self.bed_number}"
+
 class Admission(models.Model):
     STATUS_CHOICES = [
         ('Admitted', 'Admitted'),
         ('Discharged', 'Discharged'),
     ]
 
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='admissions')
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     admission_date = models.DateField(default=timezone.now)
-    ward = models.CharField(max_length=50)
-    bed_number = models.CharField(max_length=20)
+    ward = models.ForeignKey(Ward, on_delete=models.SET_NULL, null=True)
+    bed = models.ForeignKey(Bed, on_delete=models.SET_NULL, null=True)
     doctor_assigned = models.CharField(max_length=100)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Admitted')
     discharge_date = models.DateField(blank=True, null=True)

@@ -76,7 +76,7 @@
                                 <div class="col-6">
                                     <div class="form-group mb-1">
                                         <label class="mb-0 small">Bed Number</label>
-                                        {{ form.bed_number|add_class:"form-control form-control-sm" }}
+                                        {{ form.bed|add_class:"form-control form-control-sm" }}
                                         {% for error in form.bed_number.errors %}
                                         <div class="text-danger small">{{ error }}</div>
                                         {% endfor %}
@@ -161,7 +161,7 @@
                                         <td>{{ record.patient }}</td>
                                         <td>{{ record.admission_date }}</td>
                                         <td>{{ record.ward }}</td>
-                                        <td>{{ record.bed_number }}</td>
+                                        <td>{{ record.bed.bed_number }}</td>
                                         <td>{{ record.status }}</td>
                                         <td>{{ record.discharge_date|default:"—" }}</td>
                                         <td>{{ record.doctor_assigned }}</td>
