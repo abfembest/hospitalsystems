@@ -283,11 +283,11 @@
                                     <label for="exampleInputFile">File input</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="exampleInputFile">
+                                            <input type="file" class="custom-file-input" id="exampleInputFile" value="{{ form.photo|add_class:"form-control form-control-sm" }}" >
                                             <label class="custom-file-label" for="exampleInputFile">
                                                 Choose file
                                             </label>
-                                            {{ form.photo|add_class:"form-control form-control-sm" }}
+                                            
                                             {% for error in form.photo.errors %}
                                             <div class="text-danger small">{{ error }}</div>
                                             {% endfor %}
