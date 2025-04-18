@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>HMS | Nurses</title>
+    <title>{% block title %}HMS | Nurses{% endblock %}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -188,7 +188,7 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="{% url 'admission_discharge' %}" class="nav-link">
                                 <i class="nav-icon fas fa-user-injured"></i>
                                 <p>Admission & Discharge</p>
                             </a>

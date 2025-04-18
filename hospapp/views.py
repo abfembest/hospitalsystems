@@ -1,8 +1,6 @@
-
 from django.shortcuts import render, HttpResponse,redirect
-# app/views.py
-from .forms import PatientForm
-from .models import Patient
+from .forms import PatientForm, AdmissionForm
+from .models import Patient, Admission
 
 # Create your views here.
 
@@ -52,6 +50,31 @@ def register_patient(request):
         'form': form,
         'patients': patients
     })
+
+def admission_discharge_view(request):
+    if request.method == 'POST':
+        form = AdmissionForm(request.POST)
+        if form.is_valid():
+            admission = form.save(commit=False)
+
+            # Optional: Auto-set discharge date to now if status is "Discharged" and no date provided
+            if admission.status == 'Discharged' and not admission.discharge_date:
+                from django.utils import timezone
+                admission.discharge_date = timezone.now()
+
+            admission.save()
+            messages.success(request, f"{admission.patient} record updated.")
+            return redirect('admission_discharge')  # Update with your URL name
+    else:
+        form = AdmissionForm()
+
+    admissions = Admission.objects.select_related('patient').order_by('-admission_date')
+
+    context = {
+        'form': form,
+        'admissions': admissions
+    }
+    return render(request, 'nurses/admission_discharge.html', context)
                      
 def hr(request):
     return render(request, 'hr/base.html')

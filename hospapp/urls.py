@@ -1,14 +1,12 @@
-from django.urls import path
 from . import views
 from django.urls import path
-from .views import *
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib import admin
 
 urlpatterns = [
     path('nurses', views.nurses, name='nurse'),
     path('new_patient/', views.register_patient, name='register_patient'),
+    path('admission/', views.admission_discharge_view, name='admission_discharge'),
 
     path('doctors/', views.doctors, name='doctors'),
     path('ae/', views.ae, name='ae'),
