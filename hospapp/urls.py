@@ -8,6 +8,8 @@ from django.contrib import admin
 
 urlpatterns = [
     path('nurses', views.nurses, name='nurse'),
+    path('new_patient/', views.register_patient, name='register_patient'),
+
     path('doctors/', views.doctors, name='doctors'),
     path('ae/', views.ae, name='ae'),
     path('laboratory/', views.laboratory, name='laboratory'),
@@ -15,5 +17,4 @@ urlpatterns = [
     path('accounts/', views.accounts, name='accounts'),
     path('hr/', views.hr, name='hr_page'),
     path('inventory/', views.inventory, name='inventory'),
-    path('newpatient/', views.register_patient, name='register_patient'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

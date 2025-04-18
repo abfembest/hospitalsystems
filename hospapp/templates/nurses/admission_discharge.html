@@ -1,0 +1,193 @@
+{% extends "nurses/base.html" %}
+{% load widget_tweaks %}
+{% block title %}Admission & Discharge{% endblock %}
+
+{% block content %}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Admission & Discharge</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Admission & Discharge</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Form Column -->
+            <div class="col-md-6 col-sm-12 col-lg-5">
+                <div class="card card-primary">
+                    <div class="card-header py-2">
+                        <h3 class="card-title">Admit / Discharge Patient</h3>
+                    </div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="card-body py-2">
+
+                            <!-- Patient Selector -->
+                            <div class="form-group mb-2">
+                                <label class="mb-0 small">Patient</label>
+                                {{ form.patient|add_class:"form-control form-control-sm" }}
+                                {% for error in form.patient.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <!-- Admission Date & Status -->
+                            <div class="row mb-2">
+                                <div class="col-6">
+                                    <div class="form-group mb-1">
+                                        <label class="mb-0 small">Admission Date</label>
+                                        {{ form.admission_date|add_class:"form-control form-control-sm" }}
+                                        {% for error in form.admission_date.errors %}
+                                        <div class="text-danger small">{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-1">
+                                        <label class="mb-0 small">Status</label>
+                                        {{ form.status|add_class:"form-control form-control-sm" }}
+                                        {% for error in form.status.errors %}
+                                        <div class="text-danger small">{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ward & Bed -->
+                            <div class="row mb-2">
+                                <div class="col-6">
+                                    <div class="form-group mb-1">
+                                        <label class="mb-0 small">Ward</label>
+                                        {{ form.ward|add_class:"form-control form-control-sm" }}
+                                        {% for error in form.ward.errors %}
+                                        <div class="text-danger small">{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-1">
+                                        <label class="mb-0 small">Bed Number</label>
+                                        {{ form.bed_number|add_class:"form-control form-control-sm" }}
+                                        {% for error in form.bed_number.errors %}
+                                        <div class="text-danger small">{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Doctor Assigned -->
+                            <div class="form-group mb-2">
+                                <label class="mb-0 small">Doctor Assigned</label>
+                                {{ form.doctor_assigned|add_class:"form-control form-control-sm" }}
+                                {% for error in form.doctor_assigned.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <!-- Discharge Fields -->
+                            <div class="row mb-2">
+                                <div class="col-6">
+                                    <div class="form-group mb-1">
+                                        <label class="mb-0 small">Discharge Date</label>
+                                        {{ form.discharge_date|add_class:"form-control form-control-sm" }}
+                                        {% for error in form.discharge_date.errors %}
+                                        <div class="text-danger small">{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-1">
+                                        <label class="mb-0 small">Discharge Notes</label>
+                                        {{ form.discharge_notes|add_class:"form-control form-control-sm" }}
+                                        {% for error in form.discharge_notes.errors %}
+                                        <div class="text-danger small">{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="form-group mb-0">
+                                <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                                <button type="reset" class="btn btn-secondary btn-sm">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Table Column -->
+            <div class="col-md-6 col-sm-12 col-lg-7">
+                <div class="card card-info">
+                    <div class="card-header py-2">
+                        <h3 class="card-title">Admission Records</h3>
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" id="admissionSearch" class="form-control float-right" placeholder="Search">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive" style="height: 500px; overflow-y: auto;">
+                            <table class="table table-head-fixed table-striped table-hover table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Patient</th>
+                                        <th>Admission Date</th>
+                                        <th>Ward</th>
+                                        <th>Bed</th>
+                                        <th>Status</th>
+                                        <th>Discharge Date</th>
+                                        <th>Doctor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for record in admissions %}
+                                    <tr>
+                                        <td>{{ record.patient }}</td>
+                                        <td>{{ record.admission_date }}</td>
+                                        <td>{{ record.ward }}</td>
+                                        <td>{{ record.bed_number }}</td>
+                                        <td>{{ record.status }}</td>
+                                        <td>{{ record.discharge_date|default:"—" }}</td>
+                                        <td>{{ record.doctor_assigned }}</td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="7" class="text-center">No admission records found.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer py-1 clearfix">
+                        <ul class="pagination pagination-sm m-0 float-right">
+                            <li class="page-item"><a class="page-link" href="#">«</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">»</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
