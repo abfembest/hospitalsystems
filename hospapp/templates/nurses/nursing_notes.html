@@ -1,0 +1,84 @@
+{% extends "nurses/base.html" %}
+{% load static %}
+{% block title %}Nurses | Nursing Notes{% endblock %}
+
+{% block content %}
+<div class="content-header">
+    <div class="container-fluid">
+        <h1 class="m-0 text-dark">Nursing Notes</h1>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Nursing Notes Form -->
+            <div class="col-md-6">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">Add Nursing Note</h3>
+                    </div>
+                    <form method="post" action="{ url 'add_nursing_note' %}">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="patient">Patient Name</label>
+                                <input type="text" class="form-control form-control-sm" id="patient" name="patient" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="note">Note</label>
+                                <textarea class="form-control form-control-sm" id="note" name="note" rows="4" placeholder="Describe care given, observations, or instructions..." required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="nurse">Nurse (Your Name)</label>
+                                <input type="text" class="form-control form-control-sm" id="nurse" name="nurse" required>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-sm btn-warning">Save Note</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Notes Table -->
+            <div class="col-md-6">
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Recent Notes</h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Patient</th>
+                                        <th>Note</th>
+                                        <th>Nurse</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for note in notes %}
+                                    <tr>
+                                        <td>{{ note.patient }}</td>
+                                        <td>{{ note.note|truncatechars:50 }}</td>
+                                        <td>{{ note.nurse }}</td>
+                                        <td>{{ note.created_at|date:"M d, Y H:i" }}</td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="4" class="text-center">No notes recorded yet.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

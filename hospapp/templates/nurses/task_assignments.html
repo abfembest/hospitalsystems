@@ -1,0 +1,97 @@
+{% extends "nurses/base.html" %}
+{% load static %}
+{% block title %}Nurses | Task Assignments{% endblock %}
+
+{% block content %}
+<div class="content-header">
+    <div class="container-fluid">
+        <h1 class="m-0 text-dark">Task Assignments (Shift-wise)</h1>
+        <p class="text-muted">Assign tasks to nurses for specific shifts.</p>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Assign Task Form -->
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Assign Task</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="{ url 'assign_task' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="nurse">Nurse</label>
+                                <select class="form-control" id="nurse" name="nurse">
+                                    <!-- Populate with available nurses -->
+                                    {% for nurse in nurses %}
+                                    <option value="{{ nurse.id }}">{{ nurse.get_full_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="shift">Shift</label>
+                                <select class="form-control" id="shift" name="shift">
+                                    <option value="Morning">Morning</option>
+                                    <option value="Afternoon">Afternoon</option>
+                                    <option value="Night">Night</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="task_description">Task Description</label>
+                                <textarea class="form-control" id="task_description" name="task_description" rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Assign Task</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assigned Tasks List -->
+            <div class="col-md-6">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">Assigned Tasks</h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Nurse</th>
+                                        <th>Shift</th>
+                                        <th>Task</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for task in tasks %}
+                                    <tr>
+                                        <td>{{ task.nurse.get_full_name }}</td>
+                                        <td>{{ task.shift }}</td>
+                                        <td>{{ task.description }}</td>
+                                        <td>
+                                            {% if task.completed %}
+                                                <span class="badge badge-success">Completed</span>
+                                            {% else %}
+                                                <span class="badge badge-warning">Pending</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="4" class="text-center text-muted">No tasks assigned yet.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Patient, Admission
+from .models import Patient, Admission, Ward, Bed
 
 class PatientForm(forms.ModelForm):
     class Meta:
@@ -27,14 +27,39 @@ class AdmissionForm(forms.ModelForm):
             'patient',
             'admission_date',
             'ward',
-            'bed_number',
+            'bed',
             'doctor_assigned',
             'status',
             'discharge_date',
             'discharge_notes'
         ]
         widgets = {
-            'admission_date': forms.DateInput(attrs={'type': 'date'}),
-            'discharge_date': forms.DateInput(attrs={'type': 'date'}),
-            'discharge_notes': forms.Textarea(attrs={'rows': 2}),
+            'admission_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control form-control-sm'}),
+            'discharge_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control form-control-sm'}),
+            'discharge_notes': forms.Textarea(attrs={'rows': 2, 'class': 'form-control form-control-sm'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            if not isinstance(self.fields[field].widget, (forms.CheckboxInput, forms.Textarea)):
+                self.fields[field].widget.attrs.update({'class': 'form-control form-control-sm'})
+
+
+class WardForm(forms.ModelForm):
+    class Meta:
+        model = Ward
+        fields = ['name']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control form-control-sm'})
+        }
+
+class BedForm(forms.ModelForm):
+    class Meta:
+        model = Bed
+        fields = ['ward', 'bed_number', 'is_occupied']
+        widgets = {
+            'ward': forms.Select(attrs={'class': 'form-control form-control-sm'}),
+            'bed_number': forms.TextInput(attrs={'class': 'form-control form-control-sm'}),
+            'is_occupied': forms.CheckboxInput(attrs={'class': 'form-check-input'})
         }

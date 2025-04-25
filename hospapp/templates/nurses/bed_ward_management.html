@@ -1,0 +1,95 @@
+{% extends "nurses/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}Nurses | Bed / Ward Management{% endblock %}
+
+{% block content %}
+<div class="content-header">
+    <div class="container-fluid">
+        <h1 class="m-0 text-dark">Bed / Ward Management</h1>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Ward Form -->
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header"><h3 class="card-title">Add Ward</h3></div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            {{ ward_form.name|add_class:"form-control form-control-sm" }}
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" name="ward_submit" class="btn btn-sm btn-primary">Add Ward</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card card-info">
+                    <div class="card-header"><h3 class="card-title">Add Bed</h3></div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                {{ bed_form.ward|add_class:"form-control form-control-sm" }}
+                            </div>
+                            <div class="form-group">
+                                {{ bed_form.bed_number|add_class:"form-control form-control-sm" }}
+                            </div>
+                            <div class="form-check">
+                                {{ bed_form.is_occupied }}
+                                <label class="form-check-label">Occupied</label>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" name="bed_submit" class="btn btn-sm btn-info">Add Bed</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Table Section -->
+            <div class="col-md-6">
+                <div class="card card-secondary">
+                    <div class="card-header"><h3 class="card-title">Ward & Bed List</h3></div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Ward</th>
+                                        <th>Bed</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for ward in wards %}
+                                        {% for bed in ward.beds.all %}
+                                            <tr>
+                                                <td>{{ ward.name }}</td>
+                                                <td>{{ bed.bed_number }}</td>
+                                                <td>
+                                                    {% if bed.is_occupied %}
+                                                        <span class="badge badge-danger">Occupied</span>
+                                                    {% else %}
+                                                        <span class="badge badge-success">Available</span>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                        {% empty %}
+                                            <tr><td colspan="3">No beds added yet.</td></tr>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
