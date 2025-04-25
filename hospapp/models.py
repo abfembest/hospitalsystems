@@ -2,6 +2,20 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+class Ward(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+class Bed(models.Model):
+    ward = models.ForeignKey(Ward, on_delete=models.CASCADE, related_name='beds')
+    bed_number = models.CharField(max_length=20)
+    is_occupied = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.ward.name} - {self.bed_number}"
+    
 class Patient(models.Model):
     GENDER_CHOICES = (
         ('M', 'Male'),
@@ -16,6 +30,13 @@ class Patient(models.Model):
         ('O+', 'O+'), ('O-', 'O-'),
     )
 
+    STATUS_CHOICES = (
+        ('stable', 'Stable'),
+        ('critical', 'Critical'),
+        ('recovered', 'Recovered'),
+    )
+
+    full_name = models.CharField(max_length=200)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
@@ -26,25 +47,19 @@ class Patient(models.Model):
     blood_group = models.CharField(max_length=3, choices=BLOOD_GROUP_CHOICES, default='O+')
     next_of_kin_name = models.CharField(max_length=100)
     next_of_kin_phone = models.CharField(max_length=15)
+    is_inpatient = models.BooleanField(default=False)
     photo = models.ImageField(upload_to='patient_photos/', blank=False, null=True)
     date_registered = models.DateTimeField(auto_now_add=True)
+    ward = models.ForeignKey(Ward, null=True, blank=True, on_delete=models.SET_NULL)
+    bed = models.ForeignKey(Bed, null=True, blank=True, on_delete=models.SET_NULL)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='stable')
+    diagnosis = models.TextField(null=True, blank=True)
+    medication = models.TextField(null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
-class Ward(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.name
-
-class Bed(models.Model):
-    ward = models.ForeignKey(Ward, on_delete=models.CASCADE, related_name='beds')
-    bed_number = models.CharField(max_length=20)
-    is_occupied = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"{self.ward.name} - {self.bed_number}"
 
 class Admission(models.Model):
     STATUS_CHOICES = [
@@ -101,3 +116,12 @@ class EmergencyAlert(models.Model):
 
     def __str__(self):
         return f"Alert: {self.message[:30]}..."
+    
+class MedicalRecord(models.Model):
+    patient = models.ForeignKey(Patient, related_name='medical_records', on_delete=models.CASCADE)
+    record_date = models.DateField(auto_now_add=True)
+    description = models.TextField()
+    created_by = models.CharField(max_length=100)  # This could be the doctor's name or ID
+    
+    def __str__(self):
+        return f"Record for {self.patient.full_name} on {self.record_date}"

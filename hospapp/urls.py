@@ -16,6 +16,14 @@ urlpatterns = [
     path('emergency_alerts', views.emergency_alerts_view, name='emergency_alerts'),
 
     path('doctors/', views.doctors, name='doctors'),
+    path('patient_list', views.patient_list, name='patient_list'),
+    path('doctors/patient-list/', views.patient_list, name='patient_list'),
+    path('doctor/view/<int:patient_id>/', views.view_patient, name='view_patient'),
+    path('doctor/diagnose/<int:patient_id>/', views.add_diagnosis, name='add_diagnosis'),
+    path('doctor/prescribe/<int:patient_id>/', views.prescribe_med, name='prescribe_med'),
+    path('doctor/notes/<int:patient_id>/', views.write_notes, name='write_notes'),
+    path('doctor/medical-records/', views.access_medical_records, name='access_medical_records'),
+
     path('ae/', views.ae, name='ae'),
     path('laboratory/', views.laboratory, name='laboratory'),
     path('pharmacy/', views.pharmacy, name='pharmacy'),
