@@ -1,0 +1,69 @@
+{% extends "nurses/base.html" %}
+{% load static %}
+{% block title %}Nurses | Patient Handover Logs{% endblock %}
+
+{% block content %}
+<div class="content-header">
+    <div class="container-fluid">
+        <h1 class="m-0 text-dark">Patient Handover Logs</h1>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Handover Note Form -->
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header"><h3 class="card-title">Add Handover Note</h3></div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="patient">Select Patient</label>
+                                <select name="patient_id" class="form-control">
+                                    {% for patient in patients %}
+                                        <option value="{{ patient.id }}">{{ patient.first_name }} {{ patient.last_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="notes">Handover Notes</label>
+                                <textarea name="notes" class="form-control" rows="4" placeholder="Enter summary of patient status..."></textarea>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" name="handover_submit" class="btn btn-sm btn-primary">Submit Handover</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Handover Logs List -->
+            <div class="col-md-6">
+                <div class="card card-secondary">
+                    <div class="card-header"><h3 class="card-title">Recent Handover Logs</h3></div>
+                    <div class="card-body" style="max-height: 450px; overflow-y: auto;">
+                        {% if handovers %}
+                            <ul class="list-group list-group-flush">
+                                {% for log in handovers %}
+                                    <li class="list-group-item">
+                                        <strong>Patient:</strong> {{ log.patient.full_name }}<br>
+                                        <strong>By:</strong> {{ log.author.get_full_name }} — 
+                                        <small>{{ log.timestamp|date:"M d, Y h:i A" }}</small><br>
+                                        <strong>Notes:</strong> {{ log.notes }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p class="text-muted">No handover logs submitted yet.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

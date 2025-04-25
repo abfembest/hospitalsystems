@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 class Patient(models.Model):
     GENDER_CHOICES = (
@@ -62,3 +63,41 @@ class Admission(models.Model):
 
     def __str__(self):
         return f"{self.patient} - {self.status}"
+
+class HandoverLog(models.Model):
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    notes = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Handover for {self.patient.full_name} by {self.author}"
+    
+class Shift(models.Model):
+    SHIFT_CHOICES = [
+        ('Morning', 'Morning'),
+        ('Afternoon', 'Afternoon'),
+        ('Night', 'Night'),
+    ]
+    name = models.CharField(max_length=20, choices=SHIFT_CHOICES, unique=True)
+
+    def __str__(self):
+        return self.name
+
+class TaskAssignment(models.Model):
+    shift = models.ForeignKey(Shift, on_delete=models.CASCADE)
+    nurse = models.ForeignKey(User, on_delete=models.CASCADE)
+    task_description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.nurse.username} - {self.shift.name}"
+    
+class EmergencyAlert(models.Model):
+    message = models.TextField()
+    triggered_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='alerts_triggered')
+    acknowledged_by = models.ManyToManyField(User, blank=True, related_name='alerts_acknowledged')
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Alert: {self.message[:30]}..."

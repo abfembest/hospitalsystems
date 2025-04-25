@@ -1,7 +1,10 @@
+from django.contrib import messages
+from .models import Patient, HandoverLog
+from django.contrib.auth.models import User
+from .models import Patient, Admission, Ward, Bed, TaskAssignment, Shift, EmergencyAlert
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, HttpResponse,redirect
 from .forms import PatientForm, AdmissionForm, WardForm, BedForm
-from .models import Patient, Admission, Ward, Bed
-from django.contrib import messages
 
 # Create your views here.
 
@@ -75,6 +78,86 @@ def bed_ward_management_view(request):
     }
     return render(request, 'nurses/bed_ward_management.html', context)
                           
+def vitals(request):
+    return render(request, 'nurses/vital_signs.html')
+
+def nursing_notes(request):
+    return render(request, 'nurses/nursing_notes.html')
+
+def mar(request):
+    return render(request, 'nurses/mar.html')
+
+# @login_required
+def handover_logs_view(request):
+    if request.method == 'POST' and 'handover_submit' in request.POST:
+        patient_id = request.POST.get('patient_id')
+        notes = request.POST.get('notes')
+
+        if patient_id and notes:
+            try:
+                patient = Patient.objects.get(id=patient_id)
+                HandoverLog.objects.create(
+                    patient=patient,
+                    author=request.user,
+                    notes=notes
+                )
+            except Patient.DoesNotExist:
+                # optionally handle error if patient is not found
+                pass
+
+        return redirect('handover_logs')  # update with your actual URL name
+
+    context = {
+        'patients': Patient.objects.all(),
+        'handovers': HandoverLog.objects.select_related('patient', 'author').order_by('-timestamp')[:50],
+    }
+    return render(request, 'nurses/handover_logs.html', context)
+
+def task_assignments_view(request):
+    if request.method == 'POST':
+        nurse_id = request.POST.get('nurse_id')
+        shift_id = request.POST.get('shift_id')
+        task_description = request.POST.get('task_description')
+
+        if nurse_id and shift_id and task_description:
+            nurse = User.objects.get(id=nurse_id)
+            shift = Shift.objects.get(id=shift_id)
+
+            TaskAssignment.objects.create(
+                nurse=nurse,
+                shift=shift,
+                task_description=task_description
+            )
+            return redirect('task_assignments')
+
+    context = {
+        'assignments': TaskAssignment.objects.select_related('nurse', 'shift').order_by('-created_at')[:50],
+        'nurses': User.objects.all(),
+        'shifts': Shift.objects.all()
+    }
+    return render(request, 'nurses/task_assignments.html', context)
+
+def emergency_alerts_view(request):
+    if request.method == 'POST':
+        if 'acknowledge' in request.POST:
+            alert_id = request.POST.get('alert_id')
+            alert = EmergencyAlert.objects.get(id=alert_id)
+            alert.acknowledged_by.add(request.user)
+
+        elif 'trigger' in request.POST:
+            message = request.POST.get('message')
+            if message:
+                EmergencyAlert.objects.create(
+                    message=message,
+                    triggered_by=request.user
+                )
+        return redirect('emergency_alerts')
+
+    context = {
+        'alerts': EmergencyAlert.objects.prefetch_related('acknowledged_by').order_by('-timestamp')[:50]
+    }
+    return render(request, 'nurses/emergency_alerts.html', context)
+
 def doctors(request):
     return render(request, 'doctors/base.html')
                           
