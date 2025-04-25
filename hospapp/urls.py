@@ -22,4 +22,5 @@ urlpatterns = [
     path('accounts/', views.accounts, name='accounts'),
     path('hr/', views.hr, name='hr_page'),
     path('inventory/', views.inventory, name='inventory'),
+    path('hms_admin', views.hms_admin, name='hms_admin'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

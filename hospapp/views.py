@@ -1,7 +1,7 @@
 from django.contrib import messages
-from .models import Patient, HandoverLog
+from django.utils import timezone
 from django.contrib.auth.models import User
-from .models import Patient, Admission, Ward, Bed, TaskAssignment, Shift, EmergencyAlert
+from .models import Patient, Admission, Ward, Bed, HandoverLog, TaskAssignment, Shift, EmergencyAlert
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, HttpResponse,redirect
 from .forms import PatientForm, AdmissionForm, WardForm, BedForm
@@ -169,12 +169,15 @@ def laboratory(request):
                            
 def pharmacy(request):
     return render(request, 'pharmacy/base.html')
+
 def accounts(request):
     return render(request, 'accounts/base.html')
-
                      
 def hr(request):
     return render(request, 'hr/base.html')
                             
 def inventory(request):
     return render(request, 'inventory/base.html')
+
+def hms_admin(request):
+    return render(request, 'hms_admin/base.html')
