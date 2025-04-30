@@ -28,7 +28,7 @@ def register_patient(request):
     else:
         form = PatientForm()
         
-    return render(request, 'nurses/register_patient.html', {
+    return render(request, 'receptionist/register.html', {
         'form': form,
         'patients': patients
     })
@@ -249,3 +249,6 @@ def inventory(request):
 
 def hms_admin(request):
     return render(request, 'hms_admin/base.html')
+
+def receptionist(request):
+    return render(request, 'receptionist/index.html')

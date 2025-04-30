@@ -1,6 +1,6 @@
-{% extends "nurses/base.html" %}
+{% extends "receptionist/base.html" %}
 
-{% block title %}Nurse Home{% endblock %}
+{% block title %}HMS | Doctor Home{% endblock %}
 
 {% block content %}
 <!-- Content Header (Page header) -->
@@ -8,114 +8,18 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark text-bold">Dashboard: Nurses</h1>
+                <h1 class="m-0 text-dark">Dashboard v2</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Nuses</li>
+                    <li class="breadcrumb-item active">Dashboard v2</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
-<<<<<<< HEAD
- 
-<!-- 🌟 Dashboard Icons -->
-<section class="dashboard-icons container py-3 my-2 rounded shadow-lg">
-=======
-
-<!--  Dashboard Icons -->
-<section class="dashboard-icons py-5 bg-light">
->>>>>>> 10d721b9b1594894bada6083737556ab4b27f057
-    <div class="container">
-        <div class="d-flex flex-wrap justify-content-center">
-
-            <div class="p-2">
-                <a href="{ url 'parent_dashboard' %}" class="bg-primary text-white p-4 text-center d-block"
-                    style="width: 150px; border-radius: 30px">
-                    <i class="bi bi-house-door display-4 d-block mb-2"></i>
-                    <span class="font-weight-semibold">Home</span>
-                </a>
-            </div>
-
-            <div class="p-2">
-                <a href="{ url 'p_profile' %}" class="bg-success text-white p-4  text-center d-block"
-                    style="width: 150px; border-radius: 30px">
-                    <i class="bi bi-person display-4 d-block mb-2"></i>
-                    <span class="font-weight-semibold">My Profile</span>
-                </a>
-            </div>
-
-            <div class="p-2">
-                <a href="{ url 'child_profile' %}" class="bg-info text-white p-4  text-center d-block"
-                    style="width: 150px; border-radius: 30px">
-                    <i class="bi bi-people display-4 d-block mb-2"></i>
-                    <span class="font-weight-semibold">Child Profile</span>
-                </a>
-            </div>
-
-            <div class="p-2">
-                <a href="{ url 'classwork' %}" class="bg-warning text-white p-4  text-center d-block"
-                    style="width: 150px; border-radius: 30px">
-                    <i class="bi bi-journal-check display-4 d-block mb-2"></i>
-                    <span class="font-weight-semibold">Classwork</span>
-                </a>
-            </div>
-
-            <div class="p-2">
-                <a href="{ url 'school_calendar' %}" class="bg-danger text-white p-4  text-center d-block"
-                    style="width: 150px; border-radius: 30px">
-                    <i class="bi bi-calendar-event display-4 d-block mb-2"></i>
-                    <span class="font-weight-semibold">Calendar</span>
-                </a>
-            </div>
-
-            <div class="p-2">
-                <a href="{ url 'grades_report' %}" class="bg-secondary text-white p-4  text-center d-block"
-                    style="width: 150px; border-radius: 30px">
-                    <i class="bi bi-bar-chart display-4 d-block mb-2"></i>
-                    <span class="font-weight-semibold">Grades</span>
-                </a>
-            </div>
-
-            <div class="p-2">
-                <a href="{ url 'child_attendance' %}" class="bg-success text-white p-4  text-center d-block"
-                    style="width: 150px; border-radius: 30px">
-                    <i class="bi bi-check-square display-4 d-block mb-2"></i>
-                    <span class="font-weight-semibold">Attendance</span>
-                </a>
-            </div>
-
-            <div class="p-2 position-relative">
-                <a href="{ url 'chat' %}" class="bg-primary text-white p-4  text-center d-block position-relative"
-                    style="width: 150px; border-radius: 30px">
-                    <i class="bi bi-chat-text display-4 d-block mb-2"></i>
-                    <span class="font-weight-semibold">Messages</span>
-                    <span class="badge badge-danger position-absolute" style="top: 5px; right: 10px;">3</span>
-                </a>
-            </div>
-
-            <div class="p-2">
-                <a href="{ url 'payment' %}" class="bg-warning text-white p-4  text-center d-block"
-                    style="width: 150px; border-radius: 30px">
-                    <i class="bi bi-wallet2 display-4 d-block mb-2"></i>
-                    <span class="font-weight-semibold">Payment</span>
-                </a>
-            </div>
-
-            <div class="p-2">
-                <a href="{ url 'announcements' %}" class="bg-danger text-white p-4  text-center d-block"
-                    style="width: 150px; border-radius: 30px">
-                    <i class="bi bi-megaphone display-4 d-block mb-2"></i>
-                    <span class="font-weight-semibold">Notices</span>
-                </a>
-            </div>
-
-        </div>
-    </div>
-</section>
 
 <!-- Main content -->
 <section class="content">
@@ -182,6 +86,34 @@
             <!-- /.col -->
         </div>
         <!-- /.row -->
+
+        <!-- Dashboard Icons -->
+        <div class="dashboard-icons py-5 bg-light">
+            <div class="container">
+                <div class="d-flex flex-wrap justify-content-center">
+
+                    <!-- Home Icon -->
+                    <div class="p-2">
+                        <a href="{% url 'receptionist' %}" class="bg-primary text-white p-4 text-center d-block"
+                            style="width: 160px; border-radius: 1.5rem;">
+                            <i class="fas fa-home fa-2x d-block mb-2"></i>
+                            <div class="small">Home</div>
+                        </a>
+                    </div>
+
+                    <!-- Register Patient Icon -->
+                    <div class="p-2">
+                        <a href="{% url 'register_patient' %}" class="bg-success text-white p-4 text-center d-block"
+                            style="width: 160px; border-radius: 1.5rem;">
+                            <i class="fas fa-user-plus fa-2x d-block mb-2"></i>
+                            <div class="small text-wrap">Register Patient</div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
 
         <div class="row">
             <div class="col-md-12">
@@ -977,3 +909,6 @@
 </aside>
 
 {% endblock %}
+<!-- /.control-sidebar -->
+<!-- Main Footer -->
+<!-- ./wrapper -->
