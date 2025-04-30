@@ -20,195 +20,199 @@
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
+<section class="dashboard-icons container py-3 shadow-lg">
+    <div class="container">
+        <div class=" flex-wrap ">
+            <!-- Nav Tabs -->
+            <ul class="nav nav-tabs mb-4" id="patientTabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="register-tab" data-toggle="tab" href="#register" role="tab">
+                        Register
+                        Patient
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="update-tab" data-toggle="tab" href="#update" role="tab">Update Info</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="schedule-tab" data-toggle="tab" href="#schedule" role="tab">
+                        Schedule
+                        Appointment
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="refer-tab" data-toggle="tab" href="#refer" role="tab">Department Referral</a>
+                </li>
+            </ul>
 
-<section class="content">
-    <div class="container-fluid">
+            <!-- Tab Content -->
+            <div class="tab-content" id="patientTabsContent">
+                <!-- Register Patient Tab -->
+                <div class="tab-pane fade show active" id="register" role="tabpanel">
+                    <form enctype="multipart/form-data">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Full Name</label>
+                                <input type="text" class="form-control" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Date of Birth</label>
+                                <input type="date" class="form-control" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Gender</label>
+                                <select class="form-control" required>
+                                    <option disabled selected>Choose...</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
 
-        <!-- Nav Tabs -->
-        <ul class="nav nav-tabs mb-4" id="patientTabs" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="register-tab" data-toggle="tab" href="#register" role="tab">Register
-                    Patient</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="update-tab" data-toggle="tab" href="#update" role="tab">Update Info</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="schedule-tab" data-toggle="tab" href="#schedule" role="tab">Schedule
-                    Appointment</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="refer-tab" data-toggle="tab" href="#refer" role="tab">Department Referral</a>
-            </li>
-        </ul>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label>Phone</label>
+                                <input type="tel" class="form-control" placeholder="+234..." required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Email (optional)</label>
+                                <input type="email" class="form-control" placeholder="example@mail.com">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Marital Status</label>
+                                <select class="form-control">
+                                    <option>Single</option>
+                                    <option>Married</option>
+                                    <option>Divorced</option>
+                                    <option>Widowed</option>
+                                </select>
+                            </div>
+                        </div>
 
-        <!-- Tab Content -->
-        <div class="tab-content" id="patientTabsContent">
-            <!-- Register Patient Tab -->
-            <div class="tab-pane fade show active" id="register" role="tabpanel">
-                <form enctype="multipart/form-data">
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>Full Name</label>
-                            <input type="text" class="form-control" placeholder="John Doe" required>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Home Address</label>
+                                <input type="text" class="form-control" placeholder="123 Street, City">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Nationality</label>
+                                <input type="text" class="form-control" placeholder="e.g. Nigerian">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>State of Origin</label>
+                                <input type="text" class="form-control">
+                            </div>
                         </div>
-                        <div class="form-group col-md-3">
-                            <label>Date of Birth</label>
-                            <input type="date" class="form-control" required>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label>Gender</label>
-                            <select class="form-control" required>
-                                <option disabled selected>Choose...</option>
-                                <option>Male</option>
-                                <option>Female</option>
-                                <option>Other</option>
-                            </select>
-                        </div>
-                    </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label>Phone</label>
-                            <input type="tel" class="form-control" placeholder="+234..." required>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label>ID Type</label>
+                                <select class="form-control">
+                                    <option>National ID</option>
+                                    <option>Voter Card</option>
+                                    <option>Driver's License</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>ID Number</label>
+                                <input type="text" class="form-control" placeholder="Enter ID number">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Upload Photo</label>
+                                <input type="file" class="form-control-file">
+                            </div>
                         </div>
-                        <div class="form-group col-md-4">
-                            <label>Email (optional)</label>
-                            <input type="email" class="form-control" placeholder="example@mail.com">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label>Marital Status</label>
-                            <select class="form-control">
-                                <option>Single</option>
-                                <option>Married</option>
-                                <option>Divorced</option>
-                                <option>Widowed</option>
-                            </select>
-                        </div>
-                    </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>Home Address</label>
-                            <input type="text" class="form-control" placeholder="123 Street, City">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>First Time or Returning?</label>
+                                <select class="form-control">
+                                    <option>First Time</option>
+                                    <option>Returning</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Referred By (if any)</label>
+                                <input type="text" class="form-control" placeholder="Doctor, Hospital, or Self">
+                            </div>
                         </div>
-                        <div class="form-group col-md-3">
-                            <label>Nationality</label>
-                            <input type="text" class="form-control" placeholder="e.g. Nigerian">
+
+                        <div class="form-group">
+                            <label>Additional Notes</label>
+                            <textarea class="form-control" rows="3"
+                                      placeholder="Any other relevant information..."></textarea>
                         </div>
-                        <div class="form-group col-md-3">
-                            <label>State of Origin</label>
+
+                        <button type="submit" class="btn btn-primary">Register Patient</button>
+                    </form>
+                </div>
+
+
+                <!-- Update Info -->
+                <div class="tab-pane fade" id="update" role="tabpanel">
+                    <form>
+                        <div class="form-group">
+                            <label>Patient ID or Name</label>
+                            <input type="text" class="form-control" placeholder="Search...">
+                        </div>
+                        <div class="form-group">
+                            <label>New Address</label>
                             <input type="text" class="form-control">
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label>New Phone Number</label>
+                            <input type="tel" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-success">Update Info</button>
+                    </form>
+                </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label>ID Type</label>
+                <!-- Schedule Appointment -->
+                <div class="tab-pane fade" id="schedule" role="tabpanel">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Patient</label>
+                                <input type="text" class="form-control" placeholder="Patient Name or ID">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Date & Time</label>
+                                <input type="datetime-local" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Doctor/Department</label>
+                            <input type="text" class="form-control" placeholder="E.g. Pediatrics">
+                        </div>
+                        <button type="submit" class="btn btn-warning">Schedule</button>
+                    </form>
+                </div>
+
+                <!-- Referral -->
+                <div class="tab-pane fade" id="refer" role="tabpanel">
+                    <form>
+                        <div class="form-group">
+                            <label>Patient ID</label>
+                            <input type="text" class="form-control" placeholder="Enter patient ID">
+                        </div>
+                        <div class="form-group">
+                            <label>Select Department</label>
                             <select class="form-control">
-                                <option>National ID</option>
-                                <option>Voter Card</option>
-                                <option>Driver's License</option>
-                                <option>Other</option>
+                                <option>Pediatrics</option>
+                                <option>Cardiology</option>
+                                <option>Orthopedics</option>
+                                <option>General Surgery</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
-                            <label>ID Number</label>
-                            <input type="text" class="form-control" placeholder="Enter ID number">
+                        <div class="form-group">
+                            <label>Referral Note</label>
+                            <textarea class="form-control" rows="3"></textarea>
                         </div>
-                        <div class="form-group col-md-4">
-                            <label>Upload Photo</label>
-                            <input type="file" class="form-control-file">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>First Time or Returning?</label>
-                            <select class="form-control">
-                                <option>First Time</option>
-                                <option>Returning</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Referred By (if any)</label>
-                            <input type="text" class="form-control" placeholder="Doctor, Hospital, or Self">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Additional Notes</label>
-                        <textarea class="form-control" rows="3"
-                            placeholder="Any other relevant information..."></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Register Patient</button>
-                </form>
-            </div>
-
-
-            <!-- Update Info -->
-            <div class="tab-pane fade" id="update" role="tabpanel">
-                <form>
-                    <div class="form-group">
-                        <label>Patient ID or Name</label>
-                        <input type="text" class="form-control" placeholder="Search...">
-                    </div>
-                    <div class="form-group">
-                        <label>New Address</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>New Phone Number</label>
-                        <input type="tel" class="form-control">
-                    </div>
-                    <button type="submit" class="btn btn-success">Update Info</button>
-                </form>
-            </div>
-
-            <!-- Schedule Appointment -->
-            <div class="tab-pane fade" id="schedule" role="tabpanel">
-                <form>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>Patient</label>
-                            <input type="text" class="form-control" placeholder="Patient Name or ID">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Date & Time</label>
-                            <input type="datetime-local" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Doctor/Department</label>
-                        <input type="text" class="form-control" placeholder="E.g. Pediatrics">
-                    </div>
-                    <button type="submit" class="btn btn-warning">Schedule</button>
-                </form>
-            </div>
-
-            <!-- Referral -->
-            <div class="tab-pane fade" id="refer" role="tabpanel">
-                <form>
-                    <div class="form-group">
-                        <label>Patient ID</label>
-                        <input type="text" class="form-control" placeholder="Enter patient ID">
-                    </div>
-                    <div class="form-group">
-                        <label>Select Department</label>
-                        <select class="form-control">
-                            <option>Pediatrics</option>
-                            <option>Cardiology</option>
-                            <option>Orthopedics</option>
-                            <option>General Surgery</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Referral Note</label>
-                        <textarea class="form-control" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-danger">Refer Patient</button>
-                </form>
+                        <button type="submit" class="btn btn-danger">Refer Patient</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
