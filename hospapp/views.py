@@ -9,76 +9,15 @@ from django.shortcuts import render, HttpResponse,redirect, get_object_or_404
 from .models import Patient, Admission, Ward, Bed, HandoverLog, TaskAssignment, Shift, EmergencyAlert, MedicalRecord
 
 # Create your views here.
-
 def index(request):
     return render(request, 'templates/admin/base.html')
 
 """ Nurses Views """
 def nurses(request):
-    return render(request,'nurses/nurses.html')
-
-def register_patient(request):
-    patients = Patient.objects.all().order_by('-date_registered')
-    
-    if request.method == 'POST':
-        form = PatientForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('register_patient')  # reload with new data
-    else:
-        form = PatientForm()
-        
-    return render(request, 'receptionist/register.html', {
-        'form': form,
-        'patients': patients
-    })
-
-def admission_discharge_view(request):
-    if request.method == 'POST':
-        form = AdmissionForm(request.POST)
-        if form.is_valid():
-            admission = form.save(commit=False)
-
-            if admission.status == 'Discharged' and not admission.discharge_date:
-                admission.discharge_date = timezone.now()
-
-            admission.save()
-            messages.success(request, f"{admission.patient} record updated successfully.")
-            return redirect('admission_discharge')
-    else:
-        form = AdmissionForm()
-
-    admissions = Admission.objects.select_related('patient', 'ward', 'bed').order_by('-admission_date')
-
-    context = {
-        'form': form,
-        'admissions': admissions,
-    }
-    return render(request, 'nurses/admission_discharge.html', context)
+    return render(request,'nurses/index.html')
 
 def bed_ward_management_view(request):
-    ward_form = WardForm()
-    bed_form = BedForm()
-
-    if request.method == 'POST':
-        if 'ward_submit' in request.POST:
-            ward_form = WardForm(request.POST)
-            if ward_form.is_valid():
-                ward_form.save()
-                return redirect('bed_ward_management')
-        elif 'bed_submit' in request.POST:
-            bed_form = BedForm(request.POST)
-            if bed_form.is_valid():
-                bed_form.save()
-                return redirect('bed_ward_management')
-
-    wards = Ward.objects.prefetch_related('beds').all()
-    context = {
-        'ward_form': ward_form,
-        'bed_form': bed_form,
-        'wards': wards
-    }
-    return render(request, 'nurses/bed_ward_management.html', context)
+    return render(request, 'nurses/bed_ward_management.html')
                           
 def vitals(request):
     return render(request, 'nurses/vital_signs.html')
@@ -317,3 +256,19 @@ def user_accounts(request):
 
 def receptionist(request):
     return render(request, 'receptionist/index.html')
+
+def register_patient(request):
+    patients = Patient.objects.all().order_by('-date_registered')
+    
+    if request.method == 'POST':
+        form = PatientForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('register_patient')  # reload with new data
+    else:
+        form = PatientForm()
+        
+    return render(request, 'receptionist/register.html', {
+        'form': form,
+        'patients': patients
+    })

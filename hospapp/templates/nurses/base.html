@@ -152,24 +152,24 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar bg-info elevation-3 rounded sidebar-light">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="nurses" class="brand-link">
-                <img src="{% static 'dist/img/AdminLTELogo.png'%}" alt="AdminLTE Logo"
+            <a href="{% url 'nurse' %}" class="brand-link">
+                <img src="{% static 'dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-bold">Nurses</span>
+                <span class="brand-text font-weight-light">Nurses</span>
             </a>
 
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user (optional) -->
-                <div class="user-panel mt-0 pb-0 mb-0 d-flex">
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
                         <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2"
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block text-white font-weight-bold">User</a>
+                        <a href="#" class="d-block">User</a>
                     </div>
                 </div>
 
@@ -177,73 +177,43 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <li class="nav-item has-treeview text-white">
-                            <a href="{% url 'nurse' %}" class="nav-link text-white">
-                                <i class="nav-icon fas fa-th-large text-white"></i>
+
+                        <li class="nav-item">
+                            <a href="{% url 'nurse' %}" class="nav-link">
+                                <i class="nav-icon fas fa-th-large"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
-                        <li class="nav-item has-treeview">
-                            <a href="{% url 'register_patient' %}" class="nav-link text-white">
-                                <i class="nav-icon fas fa-notes-medical"></i>
-                                <p>Register Patient</p>
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="{% url 'admission_discharge' %}" class="nav-link text-white">
-                                <i class="nav-icon fas fa-user-injured"></i>
-                                <p>Admission & Discharge</p>
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="{% url 'bed_ward_management' %}" class="nav-link text-white">
-                                <i class="nav-icon fas fa-bed"></i>
-                                <p>Bed/Ward Management</p>
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="{% url 'vitals' %}" class="nav-link text-white">
-                                <i class="nav-icon fas fa-heartbeat"></i>
-                                <p>Vitals signs</p>
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="{% url 'nursing_notes' %}" class="nav-link text-white">
-                                <i class="nav-icon fas fa-book-medical"></i>
-                                <p>Nursing Notes</p>
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="{% url 'mar' %}" class="nav-link text-white">
-                                <i class="nav-icon fas fa-pills"></i>
-                                <p>Medication Admin (MAR)</p>
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="{% url 'handover_logs' %}" class="nav-link text-white">
-                                <i class="nav-icon fas fa-file-medical"></i>
-                                <p>Patient Handover Logs</p>
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="{% url 'task_assignments' %}" class="nav-link text-white">
-                                <i class="nav-icon fas fa-tasks"></i>
-                                <p>Task Assignments (Shift-wise)</p>
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="{% url 'emergency_alerts' %}" class="nav-link text-white">
-                                <i class="nav-icon fas fa-bell"></i>
-                                <p>Alerts & Emergency Calls</p>
-                            </a>
-                        </li>
-                    </ul>
 
+                        <li class="nav-item">
+                            <a href="{% url 'nursing_ward_actions' %}" class="nav-link">
+                                <i class="nav-icon fas fa-procedures"></i>
+                                <p>Ward Actions</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{% url 'vitals' %}" class="nav-link">
+                                <i class="nav-icon fas fa-heartbeat"></i>
+                                <p>Record Vitals</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{% url 'nursing_notes' %}" class="nav-link">
+                                <i class="nav-icon fas fa-notes-medical"></i>
+                                <p>Consultation Notes</p>
+                            </a>
+                        </li>
+
+
+                    </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
         </aside>
+
 
 
 
@@ -273,13 +243,13 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="{% static 'plugins/jquery/jquery.min.js'%}"></script>
+    <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
     <!-- Bootstrap 4 -->
-    <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}'"></script>
+    <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <!-- AdminLTE App -->
-    <script src="{% static 'dist/js/adminlte.min.js '%}"></script>
+    <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="{% static 'dist/js/demo.js'%}"></script>
+    <script src="{% static 'dist/js/demo.js' %}"></script>
 </body>
 
 </html>

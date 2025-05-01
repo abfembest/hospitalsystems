@@ -5,15 +5,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('n/home', views.nurses, name='nurse'),
-
-    path('admission', views.admission_discharge_view, name='admission_discharge'),
-    path('bed-ward-management', views.bed_ward_management_view, name='bed_ward_management'),
-    path('vitals', views.vitals, name='vitals'),
-    path('nursing_notes', views.nursing_notes, name='nursing_notes'),
-    path('mar', views.mar, name='mar'),
-    path('handover_logs', views.handover_logs_view, name='handover_logs'),
-    path('task_assignments', views.task_assignments_view, name='task_assignments'),
-    path('emergency_alerts', views.emergency_alerts_view, name='emergency_alerts'),
+    path('n/management', views.bed_ward_management_view, name='nursing_ward_actions'),
+    path('n/vitals', views.vitals, name='vitals'),
+    path('n/nursing_notes', views.nursing_notes, name='nursing_notes'),
 
     path('d/home', views.doctors, name='doctors'),
     path('d/consultations', views.doctor_consultation, name='doctor_consultation'),

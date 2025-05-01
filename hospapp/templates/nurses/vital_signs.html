@@ -1,103 +1,59 @@
 {% extends "nurses/base.html" %}
+
 {% load static %}
-{% block title %}Nurses | Vital Signs{% endblock %}
+
+{% block title %}Nurse | Record Vitals{% endblock %}
 
 {% block content %}
 <div class="content-header">
-    <div class="container-fluid">
-        <h1 class="m-0 text-dark">Vital Signs</h1>
-    </div>
+  <div class="container-fluid">
+    <h4 class="mb-2">Record Patient Vitals</h4>
+  </div>
 </div>
 
 <section class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Record Vital Signs Form -->
-            <div class="col-md-6">
-                <div class="card card-success">
-                    <div class="card-header">
-                        <h3 class="card-title">Record Vital Signs</h3>
-                    </div>
-                    <form method="post" action="{ url 'record_vital_signs' %}">
-                        {% csrf_token %}
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="patient">Patient Name</label>
-                                <input type="text" class="form-control form-control-sm" id="patient" name="patient" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="bp">Blood Pressure (mmHg)</label>
-                                <input type="text" class="form-control form-control-sm" id="bp" name="blood_pressure" placeholder="e.g. 120/80" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="hr">Heart Rate (bpm)</label>
-                                <input type="number" class="form-control form-control-sm" id="hr" name="heart_rate" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="temp">Temperature (°C)</label>
-                                <input type="number" step="0.1" class="form-control form-control-sm" id="temp" name="temperature" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="rr">Respiratory Rate (breaths/min)</label>
-                                <input type="number" class="form-control form-control-sm" id="rr" name="respiratory_rate" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="spo2">SpO2 (%)</label>
-                                <input type="number" class="form-control form-control-sm" id="spo2" name="spo2" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="notes">Notes</label>
-                                <textarea class="form-control form-control-sm" id="notes" name="notes" rows="2" placeholder="Optional notes..."></textarea>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-sm btn-success">Save Vitals</button>
-                        </div>
-                    </form>
-                </div>
+  <div class="container-fluid">
+    <div class="card card-outline card-success">
+      <div class="card-body">
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Patient ID</label>
+              <input type="text" class="form-control" placeholder="Enter Patient ID">
             </div>
-
-            <!-- Vital Signs Table -->
-            <div class="col-md-6">
-                <div class="card card-info">
-                    <div class="card-header">
-                        <h3 class="card-title">Recent Vital Records</h3>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-sm mb-0">
-                                <thead>
-                                    <tr>
-                                        <th>Patient</th>
-                                        <th>BP</th>
-                                        <th>HR</th>
-                                        <th>Temp</th>
-                                        <th>SpO2</th>
-                                        <th>Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for vital in vitals %}
-                                    <tr>
-                                        <td>{{ vital.patient }}</td>
-                                        <td>{{ vital.blood_pressure }}</td>
-                                        <td>{{ vital.heart_rate }}</td>
-                                        <td>{{ vital.temperature }}</td>
-                                        <td>{{ vital.spo2 }}</td>
-                                        <td>{{ vital.date_recorded|date:"M d, Y H:i" }}</td>
-                                    </tr>
-                                    {% empty %}
-                                    <tr>
-                                        <td colspan="6" class="text-center">No vitals recorded yet.</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+            <div class="form-group col-md-6">
+              <label>Date & Time</label>
+              <input type="datetime-local" class="form-control">
             </div>
-        </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label>Temperature (°C)</label>
+              <input type="number" step="0.1" class="form-control">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Blood Pressure</label>
+              <input type="text" class="form-control" placeholder="e.g. 120/80">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Pulse (bpm)</label>
+              <input type="number" class="form-control">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Respiratory Rate</label>
+              <input type="number" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+              <label>Weight (kg)</label>
+              <input type="number" step="0.1" class="form-control">
+            </div>
+          </div>
+          <button class="btn btn-success mt-3">Submit Vitals</button>
+        </form>
+      </div>
     </div>
+  </div>
 </section>
 {% endblock %}
