@@ -1,8 +1,9 @@
-{% extends "doctors/base.html" %}
+{% extends "laboratory/base.html" %}
 
-{% block title %}HMS | Doctor Home{% endblock %}
-<!-- Content Wrapper. Contains page content -->
+{% block title %}HMS | Lab Home{% endblock %}
+
 {% block content %}
+
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -21,44 +22,44 @@
 </div>
 <!-- /.content-header -->
 
-<!-- 🌟 Doctor Dashboard Icons -->
+<!-- 🌟 Laboratory Dashboard Icons -->
 <section class="dashboard-icons py-3 my-2 rounded">
     <div class="container-fluid">
         <div class="d-flex flex-wrap justify-content-center">
 
-            <!-- Home -->
+            <!-- Lab Home -->
             <div class="p-2">
-                <a href="{% url 'doctors' %}" class="bg-primary text-white p-4 text-center d-block"
+                <a href="{% url 'laboratory' %}" class="bg-primary text-white p-4 text-center d-block"
                     style="width: 150px; border-radius: 30px">
                     <i class="bi bi-house-door display-4 d-block mb-2"></i>
                     <span>Home</span>
                 </a>
             </div>
 
-            <!-- Patient Consultation -->
+            <!-- Lab Test Entry -->
             <div class="p-2">
-                <a href="{% url 'doctor_consultation' %}" class="bg-success text-white p-4 text-center d-block"
+                <a href="{% url 'lab_test_entry' %}" class="bg-success text-white p-4 text-center d-block"
                     style="width: 150px; border-radius: 30px">
-                    <i class="bi bi-person-lines-fill display-4 d-block mb-2"></i>
-                    <span>Consultation</span>
+                    <i class="bi bi-clipboard2-check display-4 d-block mb-2"></i>
+                    <span>Test Entry</span>
                 </a>
             </div>
 
-            <!-- Patient Records -->
+            <!-- Upload Results -->
             <div class="p-2">
-                <a href="{% url 'access_medical_records' %}" class="bg-info text-white p-4 text-center d-block"
+                <a href="{% url 'lab_result_upload' %}" class="bg-info text-white p-4 text-center d-block"
                     style="width: 150px; border-radius: 30px">
-                    <i class="bi bi-folder2-open display-4 d-block mb-2"></i>
-                    <span>Records</span>
+                    <i class="bi bi-file-earmark-arrow-up display-4 d-block mb-2"></i>
+                    <span>Upload Results</span>
                 </a>
             </div>
 
-            <!-- Treatment Monitoring -->
+            <!-- Test Logs -->
             <div class="p-2">
-                <a href="{% url 'monitoring' %}"
-                    class="bg-warning text-white p-4 text-center d-block" style="width: 150px; border-radius: 30px">
-                    <i class="bi bi-activity display-4 d-block mb-2"></i>
-                    <span>Monitoring</span>
+                <a href="{% url 'lab_internal_logs' %}" class="bg-warning text-white p-4 text-center d-block"
+                    style="width: 150px; border-radius: 30px">
+                    <i class="bi bi-journal-text display-4 d-block mb-2"></i>
+                    <span>Test Logs</span>
                 </a>
             </div>
 

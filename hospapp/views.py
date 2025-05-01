@@ -237,9 +237,19 @@ def monitoring(request):
                           
 def ae(request):     
     return render(request, 'ae/base.html')
-                            
+
+# Lab views                            
 def laboratory(request):
-    return render(request, 'laboratory/base.html')
+    return render(request, 'laboratory/index.html')
+
+def lab_test_entry(request):
+    return render(request, 'laboratory/test_entry.html')
+
+def lab_result_upload(request):
+    return render(request, 'laboratory/result_upload.html')
+
+def lab_internal_logs(request):
+    return render(request, 'laboratory/logs.html')
                            
 def pharmacy(request):
     return render(request, 'pharmacy/base.html')

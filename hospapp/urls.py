@@ -27,7 +27,12 @@ urlpatterns = [
     # path('doctor/notes/<int:patient_id>/', views.write_notes, name='write_notes'),
 
     path('ae/', views.ae, name='ae'),
-    path('laboratory/', views.laboratory, name='laboratory'),
+
+    path('l/home', views.laboratory, name='laboratory'),
+    path('l/test_entry', views.lab_test_entry, name='lab_test_entry'),
+    path('l/upload_result', views.lab_result_upload, name='lab_result_upload'),
+    path('l/internal_logs', views.lab_internal_logs, name='lab_internal_logs'),
+
     path('pharmacy/', views.pharmacy, name='pharmacy'),
     path('accounts/', views.accounts, name='accounts'),
     path('hr/', views.hr, name='hr_page'),
