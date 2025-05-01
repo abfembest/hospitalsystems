@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+    <link href="{% static 'plugins/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -154,8 +155,8 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="{% static 'index3.html' %}" class="brand-link">
-                <img src="{% static 'dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-                    style="opacity: .8">
+                <img src="{% static 'dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo"
+                    class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">Administration</span>
             </a>
 
@@ -164,7 +165,8 @@
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+                        <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2"
+                            alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">Admin</a>
@@ -175,606 +177,265 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item">
+                            <a href="{% url 'hms_admin' %}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="{% url 'director_operations' %}" class="nav-link">
+                                <i class="nav-icon fas fa-cogs"></i>
+                                <p>Operations & Approvals</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{% url 'director_reports' %}" class="nav-link">
+                                <i class="nav-icon fas fa-file-alt"></i>
+                                <p>Full Reports</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{% url 'user_accounts' %}" class="nav-link">
+                                <i class="nav-icon fas fa-user-cog"></i>
+                                <p>User Management</p>
+                            </a>
+                        </li>
+
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user-nurse"></i>
                                 <p>
                                     Nurses Station
                                     <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">8</span>
+                                    <span class="badge badge-info right">3</span>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <!-- <li class="nav-item">
+                                    <a href="{% url 'lab_test_entry' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-vials"></i>
+                                        <p>Lab Test Entry</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'lab_result_upload' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-file-medical"></i>
+                                        <p>Upload Lab Results</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'lab_internal_logs' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-history"></i>
+                                        <p>Test Logs</p>
+                                    </a>
+                                </li> -->
+                            </ul>
+                        </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-users-cog"></i>
+                                <p>
+                                    HR Station
+                                    <i class="fas fa-angle-left right"></i>
+                                    <span class="badge badge-info right">4</span>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{% url 'admission_discharge' %}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Patient Admission & Discharge</p>
+                                    <a href="{% url 'staff_profiles' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-address-book"></i>
+                                        <p>Staff Profiles</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{% url 'bed_ward_management' %}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Bed Allocation / Ward Management</p>
+                                    <a href="{% url 'staff_attendance_shift' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-user-clock"></i>
+                                        <p>Attendance & Shifts</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{% url 'vitals' %}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Vitals Monitoring & Updates</p>
+                                    <a href="{% url 'staff_transitions' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-user-edit"></i>
+                                        <p>Onboarding & Exit</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{% url 'nursing_notes' %}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Nursing Notes</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{% url 'mar' %}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Medication Administration Record (MAR)</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{% url 'handover_logs' %}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Patient Handover Logs</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{% url 'task_assignments' %}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Task Assignments (Shift-wise)</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{% url 'emergency_alerts' %}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Alerts & Emergency Calls</p>
+                                    <a href="{% url 'staff_certifications' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-certificate"></i>
+                                        <p>Certifications</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+
+
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user-md"></i>
                                 <p>
                                     Doctors Station
                                     <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">8</span>
+                                    <span class="badge badge-info right">3</span>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{% url 'patient_list' %}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>View Patient List (Today / In-Patient / Out-Patient)</p>
+                                    <a href="{% url 'doctor_consultation' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-user-md"></i>
+                                        <p>Patient Consultation</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{% url 'access_medical_records' %}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Access Medical Records</p>
+                                        <i class="nav-icon fas fa-folder-open"></i>
+                                        <p>Patient Records</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Write Diagnosis & SOAP Notes</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Prescribe Medication</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Order Lab/Imaging Tests</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>View Lab/Test Results</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Specialist Referrals</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>E-Consultation / Telemedicine Access</p>
+                                    <a href="{% url 'monitoring' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-chart-line"></i>
+                                        <p>Treatment Monitoring</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-ambulance"></i>
-                                <p>
-                                    A&E
-                                    <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">8</span>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Emergency Patient Registration</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Triage & Priority Tagging</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Emergency Vitals / First Response Log</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Trauma & Case Notes</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Emergency Orders (Tests, Drugs, Imaging)</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Bed/ICU Availability Checker</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Code Blue/Red Alerts</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Ambulance Dispatch & ETA Tracker</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-vial"></i>
-                                <p>
-                                    Laboratory
-                                    <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">8</span>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Test Orders Queue</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Sample Collection & Labelling</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Lab Test Processing</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Upload/View Test Results</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Notify Doctors/Nurses of Critical Values</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Daily Test Logs & Reports</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Quality Control Logs</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Equipment Calibration Reminders</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-pills"></i>
-                                <p>
-                                    Pharmacy
-                                    <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">8</span>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>View Prescriptions</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dispense Medication</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Patient Drug Pickup Status</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Medication Inventory</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Expiry Alerts</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Purchase Requests</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Controlled Drugs Logs</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Daily Dispense Reports</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-file-invoice-dollar"></i>
                                 <p>
-                                    Accounts
+                                    Accounts Station
                                     <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">8</span>
+                                    <span class="badge badge-info right">4</span>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Generate Invoices</p>
+                                    <a href="{% url 'patient_payment_tracker' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-file-invoice-dollar"></i>
+                                        <p>Payments & Balances</p>
                                     </a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Collect Payments (Cash/Card/Online)</p>
+                                    <a href="{% url 'institution_financials' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-landmark"></i>
+                                        <p>Income & Expenditure</p>
                                     </a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>View Billing History</p>
+                                    <a href="{% url 'financial_reports' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-chart-line"></i>
+                                        <p>Reports & Summaries</p>
                                     </a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Process Refunds & Discounts</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Financial Reports</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Daily Collection Summary</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Reconciliation (with Pharmacy, Lab)</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Outstanding Balances Tracker</p>
+                                    <a href="{% url 'budget_planning' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-balance-scale"></i>
+                                        <p>Budget Planning</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-cogs"></i>
+                                <i class="nav-icon fas fa-vial"></i>
                                 <p>
-                                    Admin Panel
+                                    Lab Station
                                     <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">8</span>
+                                    <span class="badge badge-info right">3</span>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Manage Departments / Wards / Units</p>
+                                    <a href="{% url 'lab_test_entry' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-vials"></i>
+                                        <p>Lab Test Entry</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>User Access & Role Settings</p>
+                                    <a href="{% url 'lab_result_upload' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-file-medical"></i>
+                                        <p>Upload Lab Results</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>System Settings (Date/Time, Language)</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Audit Trail Viewer</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Backup & Restore System Data</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Alerts & Notifications Manager</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Patient Feedback Logs</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Incident Reporting System</p>
+                                    <a href="{% url 'lab_internal_logs' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-history"></i>
+                                        <p>Test Logs</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-pills"></i>
+                                <p>
+                                    Pharmacy Station
+                                    <i class="fas fa-angle-left right"></i>
+                                    <span class="badge badge-info right">4</span>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{% url 'review_prescriptions' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-file-prescription"></i>
+                                        <p>Prescriptions</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{% url 'dispense_medications' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-pills"></i>
+                                        <p>Dispense Drugs</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{% url 'manage_inventory' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-boxes"></i>
+                                        <p>Stock Management</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{% url 'reorder_alerts' %}" class="nav-link">
+                                        <i class="nav-icon fas fa-exclamation-triangle"></i>
+                                        <p>Reorder Alerts</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user-tie"></i>
                                 <p>
-                                    HR
+                                    Receptionist
                                     <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">7</span>
+                                    <span class="badge badge-info right">1</span>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Staff Directory & Profiles</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Duty Roster / Shift Scheduling</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Attendance & Leave Management</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Training & Certifications</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>License Renewal Alerts</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Performance Reviews</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Staff Messaging / Announcements</p>
+                                    <a href="{% url 'register_patient' %}" class="nav-link">
+                                        <i class="fas fa-user-plus nav-icon"></i>
+                                        <p>Register New Patients</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-file-invoice"></i>
-                                <p>
-                                    Insurance
-                                    <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">8</span>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Verify Insurance Eligibility</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Register New Insurance Providers</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Claims Submission</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Track Claims Status</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Reimbursement Processing</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Generate Insurance Reports</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Policy/Package Management</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Insurance Authorization Logs</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-warehouse"></i>
-                                <p>
-                                    Inventory
-                                    <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">8</span>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Stock Register (Medical / Non-Medical)</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Goods Received Notes (GRN)</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Purchase Requests & Approvals</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Reorder Level Alerts</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Vendor Management</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Track Expiring/Expired Items</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Asset Inventory (beds, machines, etc.)</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Stock Movement Report</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -782,13 +443,13 @@
             <!-- /.sidebar -->
         </aside>
 
-        <!-- {% block content %} -->
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+            {% block content %}
+            {% endblock %}
         </div>
 
-        <!-- {% endblock %} -->
 
         <footer class="main-footer">
             <div class="float-right d-none d-sm-block">

@@ -19,12 +19,6 @@ urlpatterns = [
     path('d/consultations', views.doctor_consultation, name='doctor_consultation'),
     path('d/medical-records/', views.access_medical_records, name='access_medical_records'),
     path('d/monitoring/', views.monitoring, name='monitoring'),
-    # path('patient_list', views.patient_list, name='patient_list'),
-    # path('doctors/patient-list/', views.patient_list, name='patient_list'),
-    # path('doctor/view/<int:patient_id>/', views.view_patient, name='view_patient'),
-    # path('doctor/diagnose/<int:patient_id>/', views.add_diagnosis, name='add_diagnosis'),
-    # path('doctor/prescribe/<int:patient_id>/', views.prescribe_med, name='prescribe_med'),
-    # path('doctor/notes/<int:patient_id>/', views.write_notes, name='write_notes'),
 
     path('ae/', views.ae, name='ae'),
 
@@ -52,7 +46,11 @@ urlpatterns = [
     path('hr/staff_certifications', views.staff_certifications, name='staff_certifications'),
 
     path('inventory/', views.inventory, name='inventory'),
-    path('hms_admin', views.hms_admin, name='hms_admin'),
+
+    path('ad/home', views.hms_admin, name='hms_admin'),
+    path('ad/operations', views.director_operations, name='director_operations'),
+    path('ad/reports', views.director_reports, name='director_reports'),
+    path('ad/accounts', views.user_accounts, name='user_accounts'),
 
     path('r/home', views.receptionist, name='receptionist'),
     path('r/new_patient', views.register_patient, name='register_patient'),

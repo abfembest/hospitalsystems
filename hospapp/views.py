@@ -302,8 +302,18 @@ def staff_certifications(request):
 def inventory(request):
     return render(request, 'inventory/base.html')
 
+# HMS Admin Views
 def hms_admin(request):
-    return render(request, 'hms_admin/base.html')
+    return render(request, 'hms_admin/index.html')
+
+def director_operations(request):
+    return render(request, 'hms_admin/operations.html')
+
+def director_reports(request):
+    return render(request, 'hms_admin/reports.html')
+
+def user_accounts(request):
+    return render(request, 'hms_admin/user_accounts.html')
 
 def receptionist(request):
     return render(request, 'receptionist/index.html')
