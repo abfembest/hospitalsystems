@@ -23,60 +23,63 @@
 <!-- /.content-header -->
 
 <!-- 🌟 Pharmacy Dashboard Icons -->
-<section class="dashboard-icons py-3 my-2 rounded">
-    <div class="container-fluid">
+<section class="dashboard-icons py-4 bg-light rounded">
+    <div class="container">
         <div class="d-flex flex-wrap justify-content-center">
 
-            <!-- Pharmacy Home -->
+            <!-- Home -->
             <div class="p-2">
-                <a href="{% url 'pharmacy' %}" class="bg-primary text-white p-4 text-center d-block"
-                    style="width: 150px; border-radius: 30px">
-                    <i class="bi bi-house-door display-4 d-block mb-2"></i>
-                    <span>Home</span>
+                <a href="{% url 'pharmacy' %}"
+                    class="bg-primary text-white text-center d-flex flex-column align-items-center justify-content-center p-4"
+                    style="width: 160px; height: 160px; border-radius: 30px;">
+                    <i class="bi bi-house-door display-4 mb-2"></i>
+                    <span class="text-nowrap">Home</span>
                 </a>
             </div>
 
             <!-- Prescriptions -->
             <div class="p-2">
-                <a href="{% url 'review_prescriptions' %}" class="bg-success text-white p-4 text-center d-block"
-                    style="width: 150px; border-radius: 30px">
-                    <i class="bi bi-receipt display-4 d-block mb-2"></i>
-                    <span>Prescriptions</span>
+                <a href="{% url 'review_prescriptions' %}"
+                    class="bg-success text-white text-center d-flex flex-column align-items-center justify-content-center p-4"
+                    style="width: 160px; height: 160px; border-radius: 30px;">
+                    <i class="bi bi-receipt display-4 mb-2"></i>
+                    <span class="text-nowrap">Prescriptions</span>
                 </a>
             </div>
 
             <!-- Dispense Drugs -->
             <div class="p-2">
-                <a href="{% url 'dispense_medications' %}" class="bg-info text-white p-4 text-center d-block"
-                    style="width: 150px; border-radius: 30px">
-                    <i class="bi bi-capsule-pill display-4 d-block mb-2"></i>
-                    <span>Dispense Drugs</span>
+                <a href="{% url 'dispense_medications' %}"
+                    class="bg-info text-white text-center d-flex flex-column align-items-center justify-content-center p-4"
+                    style="width: 160px; height: 160px; border-radius: 30px;">
+                    <i class="bi bi-capsule-pill display-4 mb-2"></i>
+                    <span class="text-nowrap">Dispense Drugs</span>
                 </a>
             </div>
 
-            <!-- Inventory Management -->
+            <!-- Inventory -->
             <div class="p-2">
-                <a href="{% url 'manage_inventory' %}" class="bg-warning text-white p-4 text-center d-block"
-                    style="width: 150px; border-radius: 30px">
-                    <i class="bi bi-box-seam display-4 d-block mb-2"></i>
-                    <span>Inventory</span>
+                <a href="{% url 'manage_inventory' %}"
+                    class="bg-warning text-white text-center d-flex flex-column align-items-center justify-content-center p-4"
+                    style="width: 160px; height: 160px; border-radius: 30px;">
+                    <i class="bi bi-box-seam display-4 mb-2"></i>
+                    <span class="text-nowrap">Inventory</span>
                 </a>
             </div>
 
             <!-- Reorder Alerts -->
             <div class="p-2">
-                <a href="{% url 'reorder_alerts' %}" class="bg-danger text-white p-4 text-center d-block"
-                    style="width: 150px; border-radius: 30px">
-                    <i class="bi bi-exclamation-triangle display-4 d-block mb-2"></i>
-                    <span>Reorder Alerts</span>
+                <a href="{% url 'reorder_alerts' %}"
+                    class="bg-danger text-white text-center d-flex flex-column align-items-center justify-content-center p-4"
+                    style="width: 160px; height: 160px; border-radius: 30px;">
+                    <i class="bi bi-exclamation-triangle display-4 mb-2"></i>
+                    <span class="text-nowrap">Reorder Alerts</span>
                 </a>
             </div>
 
         </div>
     </div>
 </section>
-
-
 
 <!-- Main content -->
 <section class="content">
