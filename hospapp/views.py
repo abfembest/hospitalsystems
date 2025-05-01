@@ -285,7 +285,19 @@ def budget_planning(request):
 
 # HR Views
 def hr(request):
-    return render(request, 'hr/base.html')
+    return render(request, 'hr/index.html')
+
+def staff_profiles(request):
+    return render(request, 'hr/staff_profiles.html')
+
+def staff_attendance(request):
+    return render(request, 'hr/staff_attendance_shift.html')
+
+def staff_transitions(request):
+    return render(request, 'hr/staff_transitions.html')
+
+def staff_certifications(request):
+    return render(request, 'hr/certifications.html')
                             
 def inventory(request):
     return render(request, 'inventory/base.html')
