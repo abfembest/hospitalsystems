@@ -39,7 +39,12 @@ urlpatterns = [
     path('p/inventory', views.manage_inventory, name='manage_inventory'),
     path('p/reorder_alerts', views.reorder_alerts, name='reorder_alerts'),
 
-    path('accounts/', views.accounts, name='accounts'),
+    path('a/home', views.accounts, name='accounts'),
+    path('a/payment_tracker', views.patient_payment_tracker, name='patient_payment_tracker'),
+    path('a/financials', views.institution_financials, name='institution_financials'),
+    path('a/financial_reports', views.financial_reports, name='financial_reports'),
+    path('a/budget_planning', views.budget_planning, name='budget_planning'),
+
     path('hr/', views.hr, name='hr_page'),
     path('inventory/', views.inventory, name='inventory'),
     path('hms_admin', views.hms_admin, name='hms_admin'),

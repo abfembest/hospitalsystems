@@ -267,9 +267,23 @@ def manage_inventory(request):
 def reorder_alerts(request):
     return render(request, 'pharmacy/alerts.html')
 
+# Acoounts Views
 def accounts(request):
-    return render(request, 'accounts/base.html')
-                     
+    return render(request, 'accounts/index.html')
+
+def patient_payment_tracker(request):
+    return render(request, 'accounts/payment_tracker.html')
+
+def institution_financials(request):
+    return render(request, 'accounts/financials.html')
+
+def financial_reports(request):
+    return render(request, 'accounts/financial_reports.html')
+
+def budget_planning(request):
+    return render(request, 'accounts/planning.html')
+
+# HR Views
 def hr(request):
     return render(request, 'hr/base.html')
                             
