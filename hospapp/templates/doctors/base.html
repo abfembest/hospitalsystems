@@ -30,11 +30,11 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{% static 'index3.html' %}" class="nav-link">Home</a>
+                    <a href="{% url 'doctors' %}" class="nav-link">Home</a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
+                {% comment %} <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
-                </li>
+                </li> {% endcomment %}
             </ul>
 
             <!-- SEARCH FORM -->
@@ -154,8 +154,8 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="{% static 'index3.html' %}" class="brand-link">
-                <img src="{% static 'dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-                    style="opacity: .8">
+                <img src="{% static 'dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo"
+                    class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">Doctors</span>
             </a>
 
@@ -164,7 +164,8 @@
                 <!-- Sidebar user (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+                        <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2"
+                            alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">User</a>
@@ -181,7 +182,25 @@
                                 <p>Dashboard</p>
                             </a>
                         </li>
-                        <li class="nav-item has-treeview">
+                        <li class="nav-item">
+                            <a href="{% url 'doctor_consultation' %}" class="nav-link">
+                                <i class="nav-icon fas fa-user-md"></i>
+                                <p>Patient Consultation</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'access_medical_records' %}" class="nav-link">
+                                <i class="nav-icon fas fa-folder-open"></i>
+                                <p>Patient Records</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'monitoring' %}" class="nav-link">
+                                <i class="nav-icon fas fa-chart-line"></i>
+                                <p>Treatment Monitoring</p>
+                            </a>
+                        </li>
+                        {% comment %} <li class="nav-item has-treeview">
                             <a href="{% url 'patient_list' %}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>View Patient List (Today / In-Patient / Out-Patient)</p>
@@ -228,7 +247,7 @@
                                 <i class="nav-icon fas fa-video"></i>
                                 <p>E-Consultation / Telemedicine Access</p>
                             </a>
-                        </li>
+                        </li> {% endcomment %}
                     </ul>
 
                 </nav>
@@ -237,11 +256,11 @@
             <!-- /.sidebar -->
         </aside>
 
-        
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             {% block content %}
-            
+
             {% endblock %}
         </div>
 

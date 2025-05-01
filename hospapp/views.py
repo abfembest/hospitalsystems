@@ -164,63 +164,66 @@ def emergency_alerts_view(request):
 def doctors(request):
     return render(request, 'doctors/index.html')
 
-def patient_list(request):
-    return render(request, 'doctors/patient_list.html')
+def doctor_consultation(request):
+    return render(request, 'doctors/consultation.html')
+
+# def patient_list(request):
+#     return render(request, 'doctors/patient_list.html')
 
 # View for the Patient List Page
-def patient_list(request):
-    patients = Patient.objects.all()
-    inpatients = patients.filter(is_inpatient=True)
-    outpatients = patients.filter(is_inpatient=False)
-    critical_count = patients.filter(status="critical").count()
+# def patient_list(request):
+#     patients = Patient.objects.all()
+#     inpatients = patients.filter(is_inpatient=True)
+#     outpatients = patients.filter(is_inpatient=False)
+#     critical_count = patients.filter(status="critical").count()
 
-    context = {
-        'patients': patients,
-        'inpatients': inpatients,
-        'outpatients': outpatients,
-        'critical_count': critical_count
-    }
-    return render(request, 'doctors/patient_list.html', context)
+#     context = {
+#         'patients': patients,
+#         'inpatients': inpatients,
+#         'outpatients': outpatients,
+#         'critical_count': critical_count
+#     }
+#     return render(request, 'doctors/patient_list.html', context)
 
-# View for Viewing Patient Profile
-def view_patient(request, patient_id):
-    patient = get_object_or_404(Patient, id=patient_id)
-    return render(request, 'doctors/view_patient.html', {'patient': patient})
+# # View for Viewing Patient Profile
+# def view_patient(request, patient_id):
+#     patient = get_object_or_404(Patient, id=patient_id)
+#     return render(request, 'doctors/view_patient.html', {'patient': patient})
 
-# View for Adding Diagnosis
-def add_diagnosis(request, patient_id):
-    patient = get_object_or_404(Patient, id=patient_id)
-    if request.method == 'POST':
-        # Logic for adding diagnosis here
-        # You can add diagnosis to the patient
-        diagnosis = request.POST.get('diagnosis')
-        patient.diagnosis = diagnosis
-        patient.save()
-        return HttpResponseRedirect(reverse('view_patient', args=[patient.id]))
-    return render(request, 'doctors/add_diagnosis.html', {'patient': patient})
+# # View for Adding Diagnosis
+# def add_diagnosis(request, patient_id):
+#     patient = get_object_or_404(Patient, id=patient_id)
+#     if request.method == 'POST':
+#         # Logic for adding diagnosis here
+#         # You can add diagnosis to the patient
+#         diagnosis = request.POST.get('diagnosis')
+#         patient.diagnosis = diagnosis
+#         patient.save()
+#         return HttpResponseRedirect(reverse('view_patient', args=[patient.id]))
+#     return render(request, 'doctors/add_diagnosis.html', {'patient': patient})
 
-# View for Prescribing Medication
-def prescribe_med(request, patient_id):
-    patient = get_object_or_404(Patient, id=patient_id)
-    if request.method == 'POST':
-        # Logic for prescribing medication here
-        medication = request.POST.get('medication')
-        # Assume you have a Medication model to save prescriptions
-        patient.medication = medication
-        patient.save()
-        return HttpResponseRedirect(reverse('view_patient', args=[patient.id]))
-    return render(request, 'doctors/prescribe_medication.html', {'patient': patient})
+# # View for Prescribing Medication
+# def prescribe_med(request, patient_id):
+#     patient = get_object_or_404(Patient, id=patient_id)
+#     if request.method == 'POST':
+#         # Logic for prescribing medication here
+#         medication = request.POST.get('medication')
+#         # Assume you have a Medication model to save prescriptions
+#         patient.medication = medication
+#         patient.save()
+#         return HttpResponseRedirect(reverse('view_patient', args=[patient.id]))
+#     return render(request, 'doctors/prescribe_medication.html', {'patient': patient})
 
-# View for Writing Notes
-def write_notes(request, patient_id):
-    patient = get_object_or_404(Patient, id=patient_id)
-    if request.method == 'POST':
-        # Logic for adding notes here
-        notes = request.POST.get('notes')
-        patient.notes = notes
-        patient.save()
-        return HttpResponseRedirect(reverse('view_patient', args=[patient.id]))
-    return render(request, 'doctors/write_notes.html', {'patient': patient})
+# # View for Writing Notes
+# def write_notes(request, patient_id):
+#     patient = get_object_or_404(Patient, id=patient_id)
+#     if request.method == 'POST':
+#         # Logic for adding notes here
+#         notes = request.POST.get('notes')
+#         patient.notes = notes
+#         patient.save()
+#         return HttpResponseRedirect(reverse('view_patient', args=[patient.id]))
+#     return render(request, 'doctors/write_notes.html', {'patient': patient})
 
 # @login_required
 def access_medical_records(request):
@@ -228,6 +231,9 @@ def access_medical_records(request):
     return render(request, 'doctors/access_medical_records.html', {
         'patients': patients
     })
+
+def monitoring(request):
+    return render(request, 'doctors/treatment_monitoring.html')
                           
 def ae(request):     
     return render(request, 'ae/base.html')
