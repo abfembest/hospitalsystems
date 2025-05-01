@@ -33,7 +33,12 @@ urlpatterns = [
     path('l/upload_result', views.lab_result_upload, name='lab_result_upload'),
     path('l/internal_logs', views.lab_internal_logs, name='lab_internal_logs'),
 
-    path('pharmacy/', views.pharmacy, name='pharmacy'),
+    path('p/home', views.pharmacy, name='pharmacy'),
+    path('p/review', views.review_prescriptions, name='review_prescriptions'),
+    path('p/medication', views.dispense_medications, name='dispense_medications'),
+    path('p/inventory', views.manage_inventory, name='manage_inventory'),
+    path('p/reorder_alerts', views.reorder_alerts, name='reorder_alerts'),
+
     path('accounts/', views.accounts, name='accounts'),
     path('hr/', views.hr, name='hr_page'),
     path('inventory/', views.inventory, name='inventory'),

@@ -250,9 +250,22 @@ def lab_result_upload(request):
 
 def lab_internal_logs(request):
     return render(request, 'laboratory/logs.html')
-                           
+
+# Pharmacy Views                           
 def pharmacy(request):
-    return render(request, 'pharmacy/base.html')
+    return render(request, 'pharmacy/index.html')
+
+def review_prescriptions(request):
+    return render(request, 'pharmacy/prescriptions.html')
+
+def dispense_medications(request):
+    return render(request, 'pharmacy/medication.html')
+
+def manage_inventory(request):
+    return render(request, 'pharmacy/inventory.html')
+
+def reorder_alerts(request):
+    return render(request, 'pharmacy/alerts.html')
 
 def accounts(request):
     return render(request, 'accounts/base.html')
